@@ -1,9 +1,9 @@
-const CountStream = require('./1.2.1.js');
+const CountStream = require('./1.CountStream.js');
 const countStream = new CountStream('book');
-const http = require('http');
+const https = require('https');
 
 
-http.get('http://www.manning.com',(res)=>{
+https.get('https://www.manning.com',(res)=>{
     res.pipe(countStream);
 })
 
