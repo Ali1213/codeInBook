@@ -2,7 +2,7 @@ const Writable = require('stream').Writable;
 
 class CountStream extends Writable {
     constructor(matchText,options){
-        Writable.call(this,options);
+        super(options);
         this.count = 0;
         this.matcher = new RegExp(matchText,'ig');
     }
@@ -17,3 +17,5 @@ class CountStream extends Writable {
         this.emit('total',this.count);
     }
 }
+
+module.exports = CountStream;
