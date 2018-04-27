@@ -9,4 +9,4 @@ test/
 logs
 *.log
 npm-debug.log*
-package-lock.json
+package-lock.json 
