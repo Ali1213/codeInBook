@@ -48,9 +48,24 @@ class Database extends EventEmitter {
             this.emit('load')
         })
     }
+    get(key){
+        return this[p.records][key] || null
+    }
+    set(key,value,cb){
+        const toWrite = JSON.stringify({key,value}) + '\n'
+        if(value === null){
+            delete this[p.records][key]
+        }else{
+            this[p.records][key] = value
+        }
+        this[p.writeStream].write(toWrite,cb)
+    }
+    del(key,cb){
+        return this.set(key,null,cb)
+    }
 }
 
 
-// const db = new Database('./111')
-
-// console.log(db[p.records])
+const db = new Database('./111')
+db.set('aaa',"ccc")
+console.log(db[p.records])
